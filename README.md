@@ -66,7 +66,53 @@ Baballonia supports many kinds of hardware for eye and face tracking:
 
 ## Build Instructions
 
+<<<<<<< HEAD
 ### Baballonia.Desktop
+=======
+If you want to build from source, clone this repo, its submodules and open the `.sln`/`.csproj` files in an editor of your choice. This has been tested and built on Visual Studio 2022 and Rider, but it should work with other IDEs.
+
+### The Desktop App
+
+To build the desktop app, build and load the following projects:
+
+- `Baballonia.OpenCVCapture`
+- `Baballonia.SerialCameraCapture`
+- `HyperText.Avalonia`
+- `Baballonia`
+- `Baballonia.SDK`
+- `Baballonia.Desktop`
+- Optionally, `Baballonia.Tests`
+
+Run `Baballonia.Desktop`.
+
+#### Windows Notes - Trainer instructions
+
+In order to use the trainer, you must first a) download its dependencies or b) build them yourself. You can accomplish this by:
+- a) Run the `fetch_internal.ps1` script once after a clone. This will download and place the `_internal.zip` file into your `Baballonia.Desktop` project
+- b) Run `pyinstaller` on the `trainermin.py` file, zip up its `internal` directory contents into an archive called `_internal.zip` and place it in the `Baballonia.Desktop` project
+
+#### Linux notes
+
+`libtesseract 4` is deprecated in newer repositories, but is needed to build.
+
+### The Mobile App
+
+To build the Android mobile app, build and load the following projects:
+
+- `Baballonia.OpenCVCapture`
+- `Baballonia.IPCameraCapture`
+- `HyperText.Avalonia`
+- `Baballonia`
+- `Baballonia.SDK`
+- `Baballonia.Android`
+- Optionally, `Baballonia.Tests`
+
+`Baballonia.Android` will produce an APK you can install on an Android device (and Quest HMD).
+
+### The VRCFaceTrackingModule
+
+To build the VRCFaceTracking module, you'll want to build and load the following projects:
+>>>>>>> af5c156 (Update README)
 
 1. Run the associated ``download_dependencies`` script for your given platform (``.ps1`` on Windows, ``.sh`` on Linux).
 2. If you are using an IDE, disable these projects:
@@ -78,6 +124,7 @@ Baballonia supports many kinds of hardware for eye and face tracking:
 - `Baballonia.Android`
 3. Run ``dotnet build`` inside the ``src/Baballonia.Desktop`` directory, or build with your IDE
 
+<<<<<<< HEAD
 ### Baballonia.Android/iOS
 
 1. If you are using an IDE, disable these projects:
@@ -99,3 +146,7 @@ Baballonia supports many kinds of hardware for eye and face tracking:
 2. Run ``dotnet build`` inside the ``src/VRCFaceTracking.Baballonia`` directory, or build with your IDE
 
 This will create a `VRCFaceTracking.Baballonia.zip` module which you can install manually.
+=======
+`VRCFaceTracking.Baballonia` will produce a `.zip` module you can install, as well as the module DLL.
+
+>>>>>>> af5c156 (Update README)
