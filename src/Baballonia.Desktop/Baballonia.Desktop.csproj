@@ -1,3 +1,12 @@
+<!--
+Copyright 2025 PARADIGM REALITY ENHANCEMENT LABS LLC
+Copyright 2025 Leon Costa (modifications)
+
+Modified: Added Baballonia.LibuvcCapture project reference and module DLL configuration
+
+Licensed under the Babble Software Distribution License 1.0
+-->
+
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <OutputType>WinExe</OutputType>
@@ -53,6 +62,7 @@
         <ProjectReference Include="..\Baballonia.SerialCameraCapture\Baballonia.SerialCameraCapture.csproj"/>
         <ProjectReference Include="..\Baballonia.IPCameraCapture\Baballonia.IPCameraCapture.csproj"/>
         <ProjectReference Include="..\Baballonia.VFTCapture\Baballonia.VFTCapture.csproj"/>
+        <ProjectReference Include="..\Baballonia.LibuvcCapture\Baballonia.LibuvcCapture.csproj"/>
         <ProjectReference Include="..\Baballonia\Baballonia.csproj" />
     </ItemGroup>
 
@@ -135,13 +145,16 @@
             <ModuleDlls Condition="Exists('$(OutputPath)Baballonia.OpenCVCapture.dll')" Include="$(OutputPath)Baballonia.OpenCVCapture.dll" />
             <ModuleDlls Condition="Exists('$(OutputPath)Baballonia.IPCameraCapture.dll')" Include="$(OutputPath)Baballonia.IPCameraCapture.dll" />
             <ModuleDlls Condition="Exists('$(OutputPath)Baballonia.VFTCapture.dll')" Include="$(OutputPath)Baballonia.VFTCapture.dll" />
+            <ModuleDlls Condition="Exists('$(OutputPath)Baballonia.LibuvcCapture.dll')" Include="$(OutputPath)Baballonia.LibuvcCapture.dll" />
             <ModuleDlls Condition="Exists('$(OutputPath)Baballonia.SerialCameraCapture.pdb')" Include="$(OutputPath)Baballonia.SerialCameraCapture.pdb" />
             <ModuleDlls Condition="Exists('$(OutputPath)Baballonia.OpenCVCapture.pdb')" Include="$(OutputPath)Baballonia.OpenCVCapture.pdb" />
             <ModuleDlls Condition="Exists('$(OutputPath)Baballonia.IPCameraCapture.pdb')" Include="$(OutputPath)Baballonia.IPCameraCapture.pdb" />
             <ModuleDlls Condition="Exists('$(OutputPath)Baballonia.VFTCapture.pdb')" Include="$(OutputPath)Baballonia.VFTCapture.pdb" />
+            <ModuleDlls Condition="Exists('$(OutputPath)Baballonia.LibuvcCapture.pdb')" Include="$(OutputPath)Baballonia.LibuvcCapture.pdb" />
         </ItemGroup>
         <Move SourceFiles="@(ModuleDlls)" DestinationFolder="$(OutputPath)Modules\" />
     </Target>
+
     <!-- TODO: this sucks -->
     <Target Name="CopyModulesToFolderPublish" AfterTargets="Publish">
         <ItemGroup>
