@@ -129,7 +129,20 @@ public class DefaultInferenceRunner(ILoggerFactory loggerFactory) : IInferenceRu
         }
 
         // And, if CUDA fails (or we have an AMD card)
-        // Try one more time with ROCm
+        // Try one more time with MIGraphX
+        try
+        {
+            sessionOptions.AppendExecutionProvider_MIGraphX();
+            _logger.LogInformation("Initialized ExecutionProvider: MIGraphX for {ModelName}", modelName);
+            return;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Failed to configure MIGraphX.");
+            _logger.LogWarning("Failed to create MIGraphX Execution Provider.");
+        }
+
+        // Try one more time with ROCm if the user has libonnxruntime <= 1.22.1
         try
         {
             sessionOptions.AppendExecutionProvider_ROCm();
