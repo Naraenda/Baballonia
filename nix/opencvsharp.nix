@@ -1,4 +1,10 @@
-{lib, stdenv, fetchFromGitHub, cmake, opencv}:
+{
+  lib,
+  stdenv,
+  fetchFromGitHub,
+  cmake,
+  opencv,
+}:
 stdenv.mkDerivation rec {
   name = "opencvsharp";
   src = fetchFromGitHub {
@@ -10,6 +16,7 @@ stdenv.mkDerivation rec {
   buildInputs = [ opencv ];
   nativeBuildInputs = [ cmake ];
   sourceRoot = "${src.name}/src";
+  cmakeFlags = [ "-DCMAKE_POLICY_VERSION_MINIMUM=3.5" ];
 
   meta = with lib; {
     license = licenses.asl20;
