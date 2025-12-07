@@ -157,12 +157,13 @@ Licensed under the Babble Software Distribution License 1.0
     <!-- TODO: this sucks -->
     <Target Name="CopyModulesToFolderPublish" AfterTargets="Publish">
         <ItemGroup>
-            <PublishModuleDlls Include="$(OutputPath)\publish\Baballonia.SerialCameraCapture.dll" />
-            <PublishModuleDlls Include="$(OutputPath)\publish\Baballonia.OpenCVCapture.dll" />
-            <PublishModuleDlls Include="$(OutputPath)\publish\Baballonia.IPCameraCapture.dll" />
-            <PublishModuleDlls Include="$(OutputPath)\publish\Baballonia.VFTCapture.dll" />
+            <PublishModuleDlls Include="$(PublishDir)Baballonia.SerialCameraCapture.dll" />
+            <PublishModuleDlls Include="$(PublishDir)Baballonia.OpenCVCapture.dll" />
+            <PublishModuleDlls Include="$(PublishDir)Baballonia.IPCameraCapture.dll" />
+            <PublishModuleDlls Include="$(PublishDir)Baballonia.VFTCapture.dll" />
         </ItemGroup>
-        <Move SourceFiles="@(PublishModuleDlls)" DestinationFolder="$(OutputPath)\publish\Modules\" />
+        <MakeDir Directories="$(PublishDir)Modules" />
+        <Move SourceFiles="@(PublishModuleDlls)" DestinationFolder="$(PublishDir)Modules\" />
     </Target>
 
     <!-- SkiaSharp is currently broken on ARM for some reason -->
